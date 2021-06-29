@@ -7,8 +7,7 @@ terraform {
 }
 
 provider "aws" {
-  profile = "terraform_user"
-  region  = "eu-central-1"
+  region = "eu-central-1"
 }
 
 ###################################################

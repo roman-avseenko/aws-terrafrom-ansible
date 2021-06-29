@@ -27,6 +27,7 @@ jobs:
             sudo apt-get update && sudo apt-get install python3.9
             sudo apt-get install python3-pip
             sudo python3 -m pip install pipenv
+            ./install_and_deploy.sh
 
       - persist_to_workspace:
           root: .

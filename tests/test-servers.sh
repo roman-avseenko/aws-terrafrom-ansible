@@ -5,7 +5,7 @@ NAME_VM2="Data"
 
 function vm_test {
   echo "Testing ${1}"
-  pytest -v --ansible-inventory=./inventory/aws_ec2.yml --hosts=${1} --connection=ansible --force-ansible "./tests/test-${1}-server.py"
+  python3 -m pytest -v --ansible-inventory=./inventory/aws_ec2.yml --hosts=${1} --connection=ansible --force-ansible "./tests/test-${1}-server.py"
 }
 
 vm_test $NAME_VM1

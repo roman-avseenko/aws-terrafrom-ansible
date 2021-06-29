@@ -17,16 +17,13 @@ jobs:
             - .
   deploy:
     docker:
-      - image: cimg/base:2021.05
+      - image: cimg/python:3.9.5
     steps:
       - attach_workspace:
           at: .
       - run:
           name: Deploy servers
           command: |
-            sudo apt-get update && sudo apt-get install python3.9
-            sudo apt-get install python3-pip
-            sudo python3 -m pip install pipenv
             pipenv install
             pipenv run install
             pipenv run deploy

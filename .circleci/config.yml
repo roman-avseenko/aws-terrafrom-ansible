@@ -5,16 +5,18 @@ jobs:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
+      - checkout
       - run:
-          name: terraform
+          name: Deploy machines
           command: terraform apply -auto-approve
 
   destroy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
+      - checkout
       - run:
-          name: terraform destroy
+          name: Destroy machines
           command: terraform destroy -auto-approve
 
 workflows:

@@ -24,10 +24,10 @@ jobs:
       - run:
           name: Deploy servers
           command: |
-          apt-get install python3
-          apt-get install python3-pip
-          pip3 install --user pipenv
-          ./install_and_deploy.sh
+            sudo apt-get install python3
+            sudo apt-get install python3-pip
+            sudo pip3 install --user pipenv
+            ./install_and_deploy.sh
       - persist_to_workspace:
           root: .
           paths:

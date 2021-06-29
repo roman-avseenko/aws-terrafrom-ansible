@@ -48,17 +48,9 @@ workflows:
   deploy_test_destroy:
     jobs:
       - init-deploy
-      - hold-deploy:
-          type: approval
-          requires:
-            - init-deploy
       - deploy:
           requires:
-            - hold-deploy
-      - hold-destroy:
-          type: approval
-          requires:
-            - deploy
+            - init-deploy
       - destroy:
           requires:
-            - hold-deploy
+            - deploy

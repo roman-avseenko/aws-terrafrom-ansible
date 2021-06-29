@@ -74,6 +74,9 @@ workflows:
       - deploy:
           requires:
             - init-deploy
-      - destroy:
+      - test:
           requires:
             - deploy
+      - destroy:
+          requires:
+            - test

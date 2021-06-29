@@ -1,29 +1,36 @@
 version: 2
 
 jobs:
-  apply:
+  init-apply:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
       - run:
           name: Deploy machines
-          command: terraform apply -auto-approve
+          command: |
+            terraform init
+            terraform apply -auto-approve tfapply
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
   destroy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Destroy machines
-          command: terraform destroy -auto-approve
+          command: terraform destroy -auto-approve tfapply
 
 workflows:
   version: 2
   deploy_test_destroy:
     jobs:
-      - apply
+      - init-apply
       - destroy:
           requires:
-            - apply
+            - init-apply

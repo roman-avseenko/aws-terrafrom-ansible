@@ -41,12 +41,17 @@ jobs:
   test:
     docker:
       - image: cimg/python:3.9.5
+
     steps:
       - attach_workspace:
           at: .
+
       - run:
           name: Setup testinfra
-          command: python3 -m pip install pytest-testinfra
+          command: |
+            pipenv install
+            python3 -m pip install pytest-testinfra
+
       - run:
           name: Testing servers via testinfra
           command: ./tests/test-servers.sh
@@ -62,6 +67,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+
       - run:
           name: Destroy servers
           command: terraform destroy -auto-approve

@@ -1,0 +1,27 @@
+version: 2
+
+jobs:
+  apply:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - run:
+          name: terraform
+          command: terraform apply -auto-approve
+
+  destroy:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - run:
+          name: terraform destroy
+          command: terraform destroy -auto-approve
+
+workflows:
+  version: 2
+  deploy_test_destroy:
+    jobs:
+      - apply:
+      - destroy:
+          requires:
+            - apply

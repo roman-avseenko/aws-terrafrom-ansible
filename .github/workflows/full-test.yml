@@ -42,5 +42,5 @@ jobs:
       - name: Run infra tests
         run: ./test-vms.sh
 
-     - name: Clear infrastucture
-       run: terraform destroy -auto-approve
+      - name: Clear infrastucture
+        run: terraform destroy -auto-approve

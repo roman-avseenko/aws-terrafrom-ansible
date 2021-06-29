@@ -38,11 +38,11 @@ jobs:
       - name: Run infra tests
         run: ./test_vms.sh
 
-   cleanup:
-     runs-on: ubuntu-latest
-     needs: [deploy]
-     if: ${{ always() }}
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    if: ${{ always() }}
 
-     steps:
-       - name: Clear infrastucture
-         run: terraform destroy -auto-approve
+    steps:
+     - name: Clear infrastucture
+       run: terraform destroy -auto-approve

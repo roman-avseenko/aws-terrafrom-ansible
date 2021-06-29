@@ -4,13 +4,16 @@ jobs:
   init-deploy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+
     steps:
       - checkout
+
       - run:
           name: Init servers
           command: |
             terraform init
             terraform apply -auto-approve
+
       - persist_to_workspace:
           root: .
           paths:
@@ -18,9 +21,11 @@ jobs:
   deploy:
     docker:
       - image: cimg/python:3.9.5
+
     steps:
       - attach_workspace:
           at: .
+
       - run:
           name: Deploy servers
           command: |
@@ -33,9 +38,27 @@ jobs:
           paths:
             - .
 
+  test:
+    docker:
+      - image: cimg/python:3.9.5
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Setup testinfra
+          command: python3 -m pip install pytest-testinfra
+      - run:
+          name: Testing servers via testinfra
+          command: ./tests/test-servers.sh
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   destroy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+
     steps:
       - attach_workspace:
           at: .

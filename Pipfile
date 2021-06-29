@@ -14,6 +14,5 @@ python_version = "3.9"
 
 [scripts]
 install = "ansible-galaxy install -r requirements.yml"
-init = "terraform init"
-deploy = "terraform apply -auto-approve"
-provision = "ansible-playbook playbook.yml --ssh-extra-args='-o ConnectionAttempts=120'"
+init = "terraform init && terraform apply -auto-approve"
+deploy = "ansible-playbook playbook.yml --ssh-extra-args='-o ConnectionAttempts=120'"

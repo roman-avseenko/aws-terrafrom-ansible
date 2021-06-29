@@ -8,5 +8,4 @@ else
   pipenv run install
   pipenv run init
   pipenv run deploy
-  pipenv run provision
 fi

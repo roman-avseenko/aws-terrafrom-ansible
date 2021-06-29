@@ -7,10 +7,27 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Deploy machines
+          name: Init servers
           command: |
             terraform init
             terraform apply -auto-approve
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    docker:
+      - image: cimg/base:2021.05
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Deploy servers
+          command: |
+          sudo apt-get install python3
+          sudo apt-get install python3-pip
+          pip3 install --user pipenv
+          ./install_and_deploy.sh
       - persist_to_workspace:
           root: .
           paths:
@@ -23,7 +40,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Destroy machines
+          name: Destroy servers
           command: terraform destroy -auto-approve
 
 workflows:

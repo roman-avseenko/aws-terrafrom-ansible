@@ -21,7 +21,7 @@ workflows:
   version: 2
   deploy_test_destroy:
     jobs:
-      - apply:
+      - apply
       - destroy:
           requires:
             - apply

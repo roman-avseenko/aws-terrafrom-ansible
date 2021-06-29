@@ -10,7 +10,7 @@ jobs:
           name: Deploy machines
           command: |
             terraform init
-            terraform apply -auto-approve tfapply
+            terraform apply -auto-approve
       - persist_to_workspace:
           root: .
           paths:
@@ -24,7 +24,7 @@ jobs:
           at: .
       - run:
           name: Destroy machines
-          command: terraform destroy -auto-approve tfapply
+          command: terraform destroy -auto-approve
 
 workflows:
   version: 2

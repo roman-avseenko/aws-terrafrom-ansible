@@ -49,7 +49,7 @@ jobs:
           command: python3 -m pip install pytest-testinfra
       - run:
           name: Testing servers via testinfra
-          command: pytest --version
+          command: python3 -m pytest --version
 
       - persist_to_workspace:
           root: .

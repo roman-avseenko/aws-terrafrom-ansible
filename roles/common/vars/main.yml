@@ -1,0 +1,8 @@
+---
+timezone: Europe/Minsk
+chrony_service: chronyd
+
+motd_src: /etc/motd
+issue_src: /etc/issue
+ssh_config_file: /etc/ssh/sshd_config
+...

@@ -1,0 +1,16 @@
+---
+plugin: aws_ec2
+
+aws_profile: ansible
+
+regions:
+  - 'eu-central-1'
+
+filters:
+  tag:Project:
+    - DevOpsLab
+  instance-state-name : running
+keyed_groups:
+  - key: tags.Name
+    separator: ''
+...

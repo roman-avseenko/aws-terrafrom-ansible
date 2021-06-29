@@ -1,0 +1,19 @@
+---
+- name: Timezone and banners configuration
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Web server provisioning
+  hosts: Web
+  become: true
+  roles:
+    - web
+
+- name: Data server provisioning
+  hosts: Data
+  become: true
+  roles:
+    - data
+...

@@ -1,0 +1,20 @@
+---
+- name: Setting up motd
+  template:
+    src: motd.j2
+    dest: "{{ motd_src }}"
+    mode: '0644'
+
+- name: Setting up ssh banner
+  template:
+    src: issue.j2
+    dest: "{{ issue_src }}"
+    mode: '0644'
+
+- name: Configure sshd to display banner
+  template:
+    src: sshd_config.j2
+    dest: "{{ ssh_config_file }}"
+    validate: '/usr/sbin/sshd -T -f %s'
+  notify: sshd service restart
+...

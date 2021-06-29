@@ -1,0 +1,11 @@
+---
+- name: Switch timezone to {{ timezone }} 
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Enable {{ chrony_service }} service
+  service:
+    name: "{{ chrony_service }}"
+    enabled: yes
+    state: started
+...

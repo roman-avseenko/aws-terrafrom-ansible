@@ -1,0 +1,4 @@
+---
+- name: Nginx configuration
+  import_tasks: nginx_config.yml
+...

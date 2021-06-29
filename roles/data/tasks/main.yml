@@ -1,0 +1,15 @@
+---
+- name: Install lvm2
+  yum:
+    name: "{{ lvm_package }}"
+    state: latest
+
+- name: Create volume group
+  lvg:
+    vg: "{{ vg_name }}"
+    pvs: "{{ device }}"
+
+- name: Logical volumes configuration
+  include_tasks: lv_config.yml
+  loop: "{{ lvm | dict2items }}"
+...

@@ -1,0 +1,29 @@
+---
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: latest
+
+- name: Setup nginx-mainline repository
+  yum_repository:
+    name: nginx-mainline
+    description: NGINX mainline repo
+    baseurl: http://nginx.org/packages/mainline/{{ ansible_distribution|lower }}/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/
+    gpgkey: https://nginx.org/keys/nginx_signing.key
+
+- name: Install nginx-mainline
+  yum:
+    name: "{{ web_package }}"
+    state: latest
+
+- name: Setup custom webpage
+  template:
+    src: index.j2
+    dest: "{{ web_root }}/index.html"
+
+- name: Enable nginx
+  service:
+    name: "{{ web_service }}"
+    enabled: yes
+    state: started
+...

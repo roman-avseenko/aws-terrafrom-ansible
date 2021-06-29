@@ -1,0 +1,7 @@
+---
+- name: Timezone and chronyd configuration
+  import_tasks: chronyd_config.yml
+
+- name: Banners configuration
+  import_tasks: banners_config.yml
+...

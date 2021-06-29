@@ -1,0 +1,13 @@
+---
+lvm_package: lvm2
+vg_name: data
+device: /dev/xvdb
+
+lvm:
+  data01:
+    size: 20%
+    fs: ext4
+  data02:
+    size: 80%
+    fs: ext3
+...

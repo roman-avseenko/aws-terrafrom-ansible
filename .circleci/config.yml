@@ -53,8 +53,8 @@ workflows:
           requires:
             - init-deploy
       - deploy:
-        requires:
-          - hold-deploy
+          requires:
+            - hold-deploy
       - hold-destroy:
           type: approval
           requires:

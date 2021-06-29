@@ -16,7 +16,7 @@
     state: directory
 
 - name: Mount LVs
-  mount:
+  ansible.posix.mount:
     path: "/{{ item.key }}"
     src: /dev/mapper/{{ vg_name }}-{{ item.key }}
     fstype: "{{ item.value.get('fs') }}"

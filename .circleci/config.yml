@@ -49,7 +49,7 @@ workflows:
     jobs:
       - init-deploy
       - hold-deploy:
-        type: approval
+          type: approval
           requires:
             - init-deploy
       - deploy:

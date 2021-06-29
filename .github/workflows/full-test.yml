@@ -30,8 +30,8 @@ jobs:
           sudo apt-get install python3-pip
           pip3 install --user pipenv
 
-      - name: Run pipenv
-        run: pipenv shell --python 3.9
+      #- name: Run pipenv
+      #  run: pipenv shell --python 3.9
 
       - name: Install dependencies and deploy
         run: ./install_and_deploy.sh

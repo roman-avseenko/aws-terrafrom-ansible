@@ -18,7 +18,7 @@ jobs:
           root: .
           paths:
             - .
-  deploy:
+  deploy_and_test:
     docker:
       - image: cimg/python:3.9.5
 
@@ -33,25 +33,10 @@ jobs:
             pipenv run install
             pipenv run deploy
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-
-  test:
-    docker:
-      - image: cimg/python:3.9.5
-
-    steps:
-      - attach_workspace:
-          at: .
-
       - run:
           name: Setup testinfra
           command: |
-            pipenv install
             python3 -m pip install testinfra
-            ls -l
             ansible --version
 
       - run:

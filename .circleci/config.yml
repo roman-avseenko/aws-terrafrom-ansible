@@ -29,6 +29,7 @@ jobs:
       - run:
           name: Deploy servers
           command: |
+            pipenv shell
             pipenv install
             pipenv run install
             pipenv run deploy
@@ -37,11 +38,12 @@ jobs:
           name: Setup testinfra
           command: |
             python3 -m pip install testinfra
+            ansible-inventory --graph
 
-      - run:
-          name: Testing servers via testinfra
-          command: |
-            python3 -m pytest -v --ansible-inventory="./inventory" --hosts=Web --connection=ansible --force-ansible "test-Web-server.py"
+      #- run:
+      #    name: Testing servers via testinfra
+      #    command: |
+      #      python3 -m pytest -v --ansible-inventory="./inventory" --hosts=Web --connection=ansible --force-ansible "test-Web-server.py"
       #      python3 -m pytest -v --ansible-inventory="./inventory/aws_ec2.yml" --hosts=Data --connection=ansible --force-ansible "test-Data-server.py"
 
       - persist_to_workspace:

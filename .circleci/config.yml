@@ -51,6 +51,7 @@ jobs:
           command: |
             pipenv install
             python3 -m pip install pytest-testinfra
+            python3 -m pip install paramiko
 
       - run:
           name: Testing servers via testinfra
@@ -60,6 +61,7 @@ jobs:
           root: .
           paths:
             - .
+
   destroy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light

@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Setup testinfra
           command: |
-            python3 -m pip install testinfra
+            pipenv install testinfra
             ansible --version
 
       - run:

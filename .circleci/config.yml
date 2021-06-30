@@ -33,15 +33,25 @@ jobs:
             pipenv run install
             pipenv run deploy
 
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test:
+    docker:
+      - image: cimg/python:3.9.5
+
+    steps:
+      - attach_workspace:
+          at: .
+
       - run:
           name: Setup testinfra
-          command: |
-            pipenv install --dev
+          command: pipenv install --dev
 
       - run:
           name: Testing servers via testinfra
-          command: |
-            pipenv run test
+          command: pipenv run test
 
       - persist_to_workspace:
           root: .
@@ -65,9 +75,12 @@ workflows:
   deploy_test_destroy:
     jobs:
       - init-deploy
-      - deploy_and_test:
+      - deploy:
           requires:
             - init-deploy
+      - test:
+          requires:
+            - deploy
       - destroy:
           requires:
-            - deploy_and_test
+            - test

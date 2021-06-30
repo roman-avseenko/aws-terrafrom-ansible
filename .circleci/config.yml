@@ -18,7 +18,7 @@ jobs:
           root: .
           paths:
             - .
-  deploy_and_test:
+  deploy:
     docker:
       - image: cimg/python:3.9.5
 

@@ -47,7 +47,9 @@ jobs:
 
       - run:
           name: Setup testinfra
-          command: pipenv install --dev
+          command: |
+            pipenv install
+            pipenv install --dev
 
       - run:
           name: Testing servers via testinfra

@@ -49,13 +49,13 @@ jobs:
       - run:
           name: Setup testinfra
           command: |
-            pipenv install
-            python3 -m pip install pytest-testinfra
-            python3 -m pip install paramiko
+            python3 -m pip install testinfra[ansible]
 
       - run:
           name: Testing servers via testinfra
-          command: ./test-servers.sh
+          command: |
+            python3 -m pytest -v --hosts=Web --connection=ansible --force-ansible "test-Web-server.py"
+            python3 -m pytest -v --hosts=Data --connection=ansible --force-ansible "test-Data-server.py"
 
       - persist_to_workspace:
           root: .

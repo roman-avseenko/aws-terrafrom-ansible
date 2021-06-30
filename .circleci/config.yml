@@ -49,13 +49,16 @@ jobs:
       - run:
           name: Setup testinfra
           command: |
+            python3 -m pip freeze
             python3 -m pip install testinfra[ansible]
+            python3 -m pip freeze
+            ansible-inventory --graph
 
       - run:
           name: Testing servers via testinfra
           command: |
-            python3 -m pytest -v --hosts=Web --connection=ansible --force-ansible "test-Web-server.py"
-            python3 -m pytest -v --hosts=Data --connection=ansible --force-ansible "test-Data-server.py"
+            python3 -m pytest -v --ansible-inventory="./inventory/aws_ec2.yml" --hosts=Web --connection=ansible --force-ansible "test-Web-server.py"
+            python3 -m pytest -v --ansible-inventory="./inventory/aws_ec2.yml" --hosts=Data --connection=ansible --force-ansible "test-Data-server.py"
 
       - persist_to_workspace:
           root: .

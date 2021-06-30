@@ -52,7 +52,6 @@ jobs:
             python3 -m pip freeze
             python3 -m pip install testinfra[ansible]
             python3 -m pip freeze
-            ansible-inventory --graph
 
       - run:
           name: Testing servers via testinfra

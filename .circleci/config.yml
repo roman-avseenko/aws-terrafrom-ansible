@@ -29,7 +29,6 @@ jobs:
       - run:
           name: Deploy servers
           command: |
-            pipenv shell
             pipenv install
             pipenv run install
             pipenv run deploy
@@ -38,7 +37,7 @@ jobs:
           name: Setup testinfra
           command: |
             python3 -m pip install testinfra
-            ansible-inventory --graph
+            pipenv run inventory
 
       #- run:
       #    name: Testing servers via testinfra

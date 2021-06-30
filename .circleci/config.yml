@@ -67,12 +67,9 @@ workflows:
   deploy_test_destroy:
     jobs:
       - init-deploy
-      - deploy:
+      - deploy_and_test:
           requires:
             - init-deploy
-      - test:
-          requires:
-            - deploy
       - destroy:
           requires:
-            - test
+            - deploy_and_test

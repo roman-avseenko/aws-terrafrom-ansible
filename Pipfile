@@ -8,6 +8,7 @@ ansible-core = "==2.11.2"
 boto3 = "==1.17.101"
 
 [dev-packages]
+testinfra = "*"
 
 [requires]
 python_version = "3.9"
@@ -16,4 +17,4 @@ python_version = "3.9"
 install = "ansible-galaxy install -r requirements.yml"
 init = "terraform init && terraform apply -auto-approve"
 deploy = "ansible-playbook playbook.yml --ssh-extra-args='-o ConnectionAttempts=120'"
-inventory = "ansible-inventory --graph"
+test = "./test-servers.sh"

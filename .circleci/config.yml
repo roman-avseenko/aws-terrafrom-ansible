@@ -54,7 +54,7 @@ jobs:
 
       - run:
           name: Testing servers via testinfra
-          command: ./tests/test-servers.sh
+          command: ./test-servers.sh
 
       - persist_to_workspace:
           root: .
